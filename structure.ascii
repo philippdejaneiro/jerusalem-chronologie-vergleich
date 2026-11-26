@@ -1,0 +1,13 @@
+jerusalem-chronologie-vergleich/
+├── README.md                  # Projektübersicht, Methodik & Inhaltsverzeichnis
+├── SCHEMA.md                  # Regeln & Vorlagen für die KI (wie Daten formatiert werden müssen)
+├── data/                      # Maschinenlesbare, strukturierte Datensätze
+│   ├── zeitstrahl.json        # Vergleichende Chronologie (Ereignisse & Jahreszahlen)
+│   ├── quellen.json           # Zentrale Datenbank aller Primär- und Sekundärquellen
+│   └── argumente.csv          # Tabellarische Gegenüberstellung der Kernargumente
+├── analysen/                  # Detaillierte, lesbare Markdown-Ausarbeitungen
+│   ├── 01-sichtweise-jw.md    # Argumentation, Bibelstellen & Quellen von jw.org (607 v. u. Z.)
+│   ├── 02-sichtweise-hist.md  # Archäologie, Keilschrifttexte & Historiker (587/586 v. u. Z.)
+│   └── 03-direktvergleich.md  # Gegenüberstellung der Streitpunkte (z. B. 70 Jahre, VAT 4956)
+└── rohdaten/                  # Unverarbeitete Zitate, Textauszüge & Notizen
+    └── zitate-sammlung.md
