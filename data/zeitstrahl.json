@@ -1,0 +1,56 @@
+[
+  {
+    "id": "evt-01",
+    "ereignis": "Thronbesteigung Nebukadnezars II.",
+    "jahr_jw": -625,
+    "jahr_hist": -605,
+    "differenz_jahre": 20,
+    "beschreibung": "Nebukadnezar II. wird nach dem Tod seines Vaters Nabopolassar König von Babylon (nach der Schlacht bei Karkemisch).",
+    "quellen_ids": ["jw-w11-1001", "hist-bm-21946"]
+  },
+  {
+    "id": "evt-02",
+    "ereignis": "Erste Eroberung Jerusalems & Deportation Jojachins",
+    "jahr_jw": -617,
+    "jahr_hist": -597,
+    "differenz_jahre": 20,
+    "beschreibung": "Im 7./8. Regierungsjahr Nebukadnezars wird König Jojachin nach Babylon verschleppt und Zedekia als Vasallenkönig eingesetzt.",
+    "quellen_ids": ["jw-it-jerusalem", "hist-bm-21946"]
+  },
+  {
+    "id": "evt-03",
+    "ereignis": "Zerstörung Jerusalems und des Tempels",
+    "jahr_jw": -607,
+    "jahr_hist": -587,
+    "differenz_jahre": 20,
+    "beschreibung": "Zentraler Streitpunkt: Im 18./19. Regierungsjahr Nebukadnezars werden Jerusalem und der Tempel Salomos zerstört. Beginn der vollständigen Verödung Judas.",
+    "quellen_ids": ["jw-w11-1001", "jw-w11-1101", "hist-vat-4956"]
+  },
+  {
+    "id": "evt-04",
+    "ereignis": "37. Regierungsjahr Nebukadnezars II. (VAT 4956)",
+    "jahr_jw": -588,
+    "jahr_hist": -568,
+    "differenz_jahre": 20,
+    "beschreibung": "Auf der Keilschrifttafel VAT 4956 dokumentierte astronomische Beobachtungen. Die Datierung dieses Jahres entscheidet über die gesamte Chronologie.",
+    "quellen_ids": ["jw-w11-1101", "hist-vat-4956"]
+  },
+  {
+    "id": "evt-05",
+    "ereignis": "Eroberung Babylons durch Kyros II.",
+    "jahr_jw": -539,
+    "jahr_hist": -539,
+    "differenz_jahre": 0,
+    "beschreibung": "Gemeinsamer historischer Ankerpunkt: Beide Seiten stimmen überein, dass Babylon im Oktober 539 v. u. Z. an die Meder und Perser fiel.",
+    "quellen_ids": ["jw-w11-1001", "hist-ptolemaios-kanon"]
+  },
+  {
+    "id": "evt-06",
+    "ereignis": "Rückkehr der Juden & Ende des Exils",
+    "jahr_jw": -537,
+    "jahr_hist": -538,
+    "differenz_jahre": 1,
+    "beschreibung": "Nach dem Erlass des Kyros kehren die Juden nach Jerusalem zurück. Für jw.org enden hier exakt die 70 Jahre der Verödung (607–537 v. u. Z.).",
+    "quellen_ids": ["jw-w11-1001", "jw-it-jerusalem"]
+  }
+]
