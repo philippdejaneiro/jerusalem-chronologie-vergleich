@@ -128,5 +128,45 @@
     "datierung_jerusalem": -587,
     "url": "https://wikipedia.org",
     "kernaussage": "Überliefert die Regierungszeiten der neubabylonischen Könige (Nebukadnezar II. 43 Jahre, Amel-Marduk 2 Jahre, Neriglissar 4 Jahre, Labaschi-Marduk 9 Monate, Nabonid 17 Jahre), was exakt auf die Datierung 587/586 v. u. Z. führt."
+  },
+  {
+    "id": "bibel-2koe-24-12",
+    "kategorie": "Biblischer Text",
+    "typ": "Geschichtsbuch",
+    "titel": "2. Könige 24:12 und 25:8 vs. Jeremia 52:28–29",
+    "publikation": "Die Bibel (2. Buch der Könige / Jeremia)",
+    "datierung_jerusalem": null,
+    "url": "https://jw.org",
+    "kernaussage": "2. Könige 24:12 datiert die Gefangennahme Jojachins auf das 8. Jahr Nebukadnezars (25:8 die Zerstörung auf das 19. Jahr), während Jeremia 52:28–29 und die Babylonische Chronik BM 21946 vom 7. bzw. 18. Jahr sprechen – ein Schlüsseltext für die Debatte um Akzessionsjahr-Zählung und Kalendersysteme."
+  },
+  {
+    "id": "hist-bm-38462",
+    "kategorie": "Historische Primärquelle",
+    "typ": "Babylonische Mondfinsternis-Tafel",
+    "titel": "BM 38462 (Saros-Text zu Nebukadnezars Regierungsjahren)",
+    "publikation": "British Museum, London (LBAT 1420)",
+    "datierung_jerusalem": -587,
+    "url": "https://britishmuseum.org",
+    "kernaussage": "Listet jährliche Mondfinsternisse vom 1. bis zum 29. Regierungsjahr Nebukadnezars II. auf. Die darin verzeichnete Finsternis im 17. Jahr (15. Juli 588 v. u. Z.) verankert das 18./19. Jahr astronomisch unabhängig von VAT 4956 auf 587/586 v. u. Z."
+  },
+  {
+    "id": "sek-furuli-2007",
+    "kategorie": "Sekundärliteratur (Pro 607)",
+    "typ": "Chronologische Fachstudie",
+    "titel": "Assyrian, Babylonian, Egyptian, and Persian Chronology Compared with the Chronology of the Bible (Vol. II)",
+    "publikation": "Rolf J. Furuli, Oslo 2007",
+    "datierung_jerusalem": -607,
+    "url": "https://www.biblechronology.org/studies/EvidenceVAT4956.pdf",
+    "kernaussage": "Untersucht alle neubabylonischen Keilschrifttexte und vertritt die These, dass die 13 Mondpositionen auf VAT 4956 ohne Änderung des babylonischen Kalenders auf 588/587 v. u. Z. passen, wenn Zeile 3 als 'Nacht des 9. Nisan' gelesen wird."
+  },
+  {
+    "id": "sek-jonsson-gentile",
+    "kategorie": "Sekundärliteratur (Pro 587)",
+    "typ": "Historisch-kritische Studie",
+    "titel": "The Gentile Times Reconsidered: Chronology & Christ's Return",
+    "publikation": "Carl Olof Jonsson, Commentary Press, 4. Auflage 2004",
+    "datierung_jerusalem": -587,
+    "url": "http://kristenfrihet.se/kf2/review.htm",
+    "kernaussage": "Detaillierte Untersuchung der neubabylonischen Chronologie und Gegenanalyse zu VAT 4956. Zeigt auf, warum die 588/587-Berechnung der 13 Mondpositionen astronomische Fehler bei den Planeten und Monatsanfängen erzeugt und durch BM 38462 widerlegt wird."
   }
 ]
