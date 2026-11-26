@@ -14,12 +14,10 @@
     h1 { margin: 4px 0 6px; font-size: 22px; line-height: 1.25; }
     .subtitle { margin: 0; color: var(--muted); font-size: 13px; }
 
-    /* Tabs */
     .tabs { display: flex; gap: 6px; overflow-x: auto; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; }
     .tab-btn { background: var(--card); border: 1px solid var(--border); padding: 8px 13px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); white-space: nowrap; }
     .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-    /* Horizontal Proportional Timeline */
     .timeline-wrapper { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
     .tl-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; font-size: 12px; color: var(--muted); }
     .tl-legend { display: flex; gap: 14px; font-weight: 600; }
@@ -27,20 +25,16 @@
     .tl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
     .tl-canvas { position: relative; min-width: 780px; height: 230px; background: linear-gradient(to bottom, #fffdf7 0%, #fffdf7 46%, #f8fafc 46%, #f8fafc 54%, #f7fbff 54%, #f7fbff 100%); border: 1px solid var(--border); border-radius: 10px; }
 
-    /* Decade Gridlines */
     .grid-line { position: absolute; top: 0; bottom: 24px; border-left: 1px dashed #cbd5e1; pointer-events: none; }
     .grid-label { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 10px; font-weight: 600; color: #64748b; white-space: nowrap; }
 
-    /* Track Labels */
     .track-tag { position: absolute; left: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 4px; z-index: 2; pointer-events: none; }
     .tag-jw { top: 8px; background: #fef3c7; color: #92400e; }
     .tag-hist { bottom: 30px; background: #e0f2fe; color: #075985; }
 
-    /* Track Axis Lines */
     .axis-jw { position: absolute; left: 24px; right: 24px; top: 64px; height: 2px; background: #fcd34d; }
     .axis-hist { position: absolute; left: 24px; right: 24px; top: 152px; height: 2px; background: #7dd3fc; }
 
-    /* Event Nodes */
     .node { position: absolute; transform: translate(-50%, -50%); cursor: pointer; z-index: 3; text-align: center; transition: transform 0.12s; }
     .node:hover { transform: translate(-50%, -50%) scale(1.15); z-index: 5; }
     .node-circle { width: 15px; height: 15px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); margin: 0 auto; }
@@ -48,15 +42,13 @@
     .node-jw .node-circle { background: var(--jw); }
     .node-hist { top: 153px; }
     .node-hist .node-circle { background: var(--hist); }
-    .node.selected .node-circle { width: 20px; height: 20px; ring: 3px solid var(--accent); box-shadow: 0 0 0 3px var(--accent); }
+    .node.selected .node-circle { width: 20px; height: 20px; box-shadow: 0 0 0 3px var(--accent); }
     .node-year { font-size: 10px; font-weight: 800; white-space: nowrap; background: rgba(255,255,255,0.92); padding: 1px 4px; border-radius: 4px; }
     .node-jw .node-year { color: #92400e; margin-bottom: 3px; }
     .node-hist .node-year { color: #075985; margin-top: 3px; }
 
-    /* Connector SVG */
     .connector-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
-    /* Cards & Grids */
     .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
     .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
     .card-title { font-size: 16px; font-weight: 700; margin: 0; }
@@ -112,6 +104,11 @@
   </div>
 
   <script>
+    window.onerror = function(msg, url, line) {
+      document.getElementById("notice").innerHTML =
+        '<div class="notice"><strong>Fehler:</strong> ' + msg + ' (Zeile ' + line + ')</div>';
+    };
+
     const RAW_BASE = "https://githubusercontent.com";
 
     const DEFAULT_EVENTS = [
