@@ -2,171 +2,119 @@
   {
     "id": "jw-w11-1001",
     "kategorie": "jw.org",
-    "typ": "Sekundärquelle / Theologische Auslegung",
     "titel": "Wann wurde Jerusalem in alter Zeit zerstört? — Teil eins",
-    "publikation": "Der Wachtturm (Ausgabe für die Öffentlichkeit), 1. Oktober 2011, S. 26–31",
-    "datierung_jerusalem": -607,
+    "publikation": "Der Wachtturm, 1. Oktober 2011, S. 26–31",
     "url": "https://jw.org",
-    "kernaussage": "Begründet das Jahr 607 v. u. Z. durch eine wörtliche Auslegung der biblischen 70 Jahre der Verwüstung Judas (Jeremia 25:11; 29:10) rückgerechnet vom Ende des Exils im Jahr 537 v. u. Z. Kritisiert zudem die Zuverlässigkeit antiker Geschichtsschreiber wie Berossos und des Kanons des Ptolemäus."
+    "kernaussage": "Begründet 607 v. u. Z. durch Rückrechnung der biblischen 70 Jahre der Verwüstung Judas vom Herbst 537 v. u. Z."
   },
   {
     "id": "jw-w11-1101",
     "kategorie": "jw.org",
-    "typ": "Sekundärquelle / Archäologisch-astronomische Diskussion",
-    "titel": "Wann wurde Jerusalem in alter Zeit zerstört? — Teil zwei: Was sagen die Keilschriftdokumente wirklich aus?",
-    "publikation": "Der Wachtturm (Ausgabe für die Öffentlichkeit), 1. November 2011, S. 22–28",
-    "datierung_jerusalem": -607,
+    "titel": "Wann wurde Jerusalem in alter Zeit zerstört? — Teil zwei",
+    "publikation": "Der Wachtturm, 1. November 2011, S. 22–28",
     "url": "https://jw.org",
-    "kernaussage": "Untersucht neubabylonische Geschäftsurkunden, die Babylonischen Chroniken sowie die astronomische Keilschrifttafel VAT 4956. Argumentiert, dass die Mondpositionen auf VAT 4956 besser auf das Jahr 588/587 v. u. Z. passen als auf 568/567 v. u. Z., was die Zerstörung Jerusalems auf 607 v. u. Z. verschieben würde."
+    "kernaussage": "Analysiert Keilschrifttafeln und argumentiert, dass die 13 Mondpositionen auf VAT 4956 auf 588/587 v. u. Z. passen."
   },
   {
     "id": "jw-it-jerusalem",
     "kategorie": "jw.org",
-    "typ": "Nachschlagewerk",
-    "titel": "Jerusalems Eroberung durch Babylon (im Artikel: Jerusalem)",
+    "titel": "Jerusalems Eroberung durch Babylon (Einsichten-Buch)",
     "publikation": "Einsichten über die Heilige Schrift, Band 1",
-    "datierung_jerusalem": -607,
     "url": "https://jw.org",
-    "kernaussage": "Offizielles Referenzwerk von Jehovas Zeugen, das erklärt, warum dem Zeugnis der biblischen Chronologie (607 v. u. Z.) durchweg Vorrang vor den Schlussfolgerungen weltlicher Historiker (587/586 v. u. Z.) eingeräumt wird."
+    "kernaussage": "Erklärt den Vorrang der biblischen Chronologie (607 v. u. Z.) vor weltlichen Geschichtsschreibern."
   },
   {
     "id": "bibel-jer-25-11",
-    "kategorie": "Biblischer Text",
-    "typ": "Prophetischer Text",
+    "kategorie": "Bibeltext (NWT)",
     "titel": "Jeremia 25:11–12",
-    "publikation": "Die Bibel (Buch Jeremia)",
-    "datierung_jerusalem": null,
-    "url": "https://jw.org",
-    "kernaussage": "Ankündigung, dass dieses ganze Land zu einem verwüsteten Ort wird und diese Nationen dem König von Babylon 70 Jahre lang dienen müssen, bevor Babylon nach Ablauf der 70 Jahre zur Rechenschaft gezogen wird."
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
+    "url": "https://www.jw.org/de/bibliothek/bibel/studienbibel/buecher/jeremia/25/",
+    "bibeltext_nwt": "11 Und dieses ganze Land wird zu einem verwüsteten Ort werden und zu einem Bild des Entsetzens, und diese Nationen werden dem König von Babylon 70 Jahre lang dienen müssen. 12 Doch wenn 70 Jahre voll sind, werde ich den König von Babylon und jene Nation – erklärt Jehova – für ihr Vergehen zur Rechenschaft ziehen.",
+    "kernaussage": "Schlüsseltext zu den 70 Jahren Dienst für Babylon und der anschließenden Abrechnung mit Babylon."
   },
   {
     "id": "bibel-jer-29-10",
-    "kategorie": "Biblischer Text",
-    "typ": "Prophetischer Brief",
+    "kategorie": "Bibeltext (NWT)",
     "titel": "Jeremia 29:10",
-    "publikation": "Die Bibel (Buch Jeremia)",
-    "datierung_jerusalem": null,
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
     "url": "https://jw.org",
-    "kernaussage": "Verheißung an die Exulanten in Babylon, dass Gott sich ihnen erst dann wieder zuwendet und sie an diesen Ort (Jerusalem/Juda) zurückbringt, wenn 70 Jahre in bzw. für Babylon voll sind."
+    "bibeltext_nwt": "10 Denn so spricht Jehova: ‚Erst wenn 70 Jahre in Babylon voll sind, werde ich mich euch wieder zuwenden und mein Versprechen einlösen, euch an diesen Ort zurückzubringen.‘",
+    "kernaussage": "Verheißung der Rückkehr nach Ablauf der 70 Jahre (Fußnote in NWT verweist auf alternative Wiedergabe 'für Babylon')."
   },
   {
     "id": "bibel-2chr-36-21",
-    "kategorie": "Biblischer Text",
-    "typ": "Geschichtsbuch",
+    "kategorie": "Bibeltext (NWT)",
     "titel": "2. Chronika 36:20–21",
-    "publikation": "Die Bibel (2. Buch der Chronika)",
-    "datierung_jerusalem": null,
-    "url": "https://jw.org",
-    "kernaussage": "Verbindet die Zerstörung Jerusalems und die Wegführung der Überlebenden nach Babylon mit der Erfüllung von Jeremias Wort, bis das Land seine Sabbate abgezahlt hatte und volle 70 Jahre lang verödet dalag."
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
+    "url": "https://www.jw.org/de/bibliothek/bibel/studienbibel/buecher/2-chronika/36/",
+    "bibeltext_nwt": "20 Diejenigen, die dem Schwert entkommen waren, führte er als Gefangene nach Babylon, und sie wurden Diener für ihn und seine Söhne, bis das Königreich Persien zu herrschen begann, 21 damit sich das Wort Jehovas erfüllte, das er durch Jeremia gesprochen hatte, bis das Land seine Sabbate abgezahlt hatte. Die ganze Zeit, die es verödet dalag, hielt es Sabbat, bis 70 Jahre voll waren.",
+    "kernaussage": "Verbindet die Verödung Judas nach der Zerstörung Jerusalems mit dem Abzahlen von 70 Sabbatjahren."
   },
   {
     "id": "bibel-dan-9-2",
-    "kategorie": "Biblischer Text",
-    "typ": "Prophetischer Text",
+    "kategorie": "Bibeltext (NWT)",
     "titel": "Daniel 9:2",
-    "publikation": "Die Bibel (Buch Daniel)",
-    "datierung_jerusalem": null,
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
     "url": "https://jw.org",
-    "kernaussage": "Daniel erkennt im ersten Jahr des Darius (539/538 v. u. Z.) aus den Schriften Jeremias, dass die Zahl der Jahre für die Verwüstung Jerusalems 70 Jahre beträgt."
+    "bibeltext_nwt": "2 im ersten Jahr seiner Regierung erkannte ich, Daniel, anhand der Bücher die Zahl der Jahre, die das Wort Jehovas dem Propheten Jeremia für die Verwüstung Jerusalems genannt hatte, nämlich 70 Jahre.",
+    "kernaussage": "Daniel bezieht die 70 Jahre Jeremias direkt auf die Zeitspanne für die 'Verwüstung Jerusalems'."
   },
   {
     "id": "bibel-sach-7-5",
-    "kategorie": "Biblischer Text",
-    "typ": "Prophetischer Text",
-    "titel": "Sacharja 1:12 und 7:5",
-    "publikation": "Die Bibel (Buch Sacharja)",
-    "datierung_jerusalem": null,
+    "kategorie": "Bibeltext (NWT)",
+    "titel": "Sacharja 7:5",
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
     "url": "https://jw.org",
-    "kernaussage": "Bezugnahme auf 70 Jahre des Zorns über Jerusalem (ca. 519 v. u. Z.) sowie auf das 70-jährige Fasten im fünften und siebten Monat zur Erinnerung an die Zerstörung Jerusalems und die Ermordung Gedaljas."
+    "bibeltext_nwt": "5 ‚Sag zum ganzen Volk des Landes und zu den Priestern: „Als ihr im fünften Monat und im siebten Monat gefastet und geklagt habt – und das 70 Jahre lang –, habt ihr da wirklich für mich gefastet?“‘",
+    "kernaussage": "Bezugnahme auf das 70-jährige Fasten zum Gedenken an die Tempelzerstörung im 5. Monat."
+  },
+  {
+    "id": "bibel-2koe-24-12",
+    "kategorie": "Bibeltext (NWT)",
+    "titel": "2. Könige 24:12 & 25:8",
+    "publikation": "Neue-Welt-Übersetzung der Heiligen Schrift",
+    "url": "https://jw.org",
+    "bibeltext_nwt": "25:8 Im fünften Monat, am siebten Tag des Monats – das war das 19. Jahr des Königs Nebukadnezar, des Königs von Babylon –, kam Nebusaradan, der Oberste der Leibwache, ein Diener des Königs von Babylon, nach Jerusalem.",
+    "kernaussage": "Datierung der Zerstörung auf das 19. Regierungsjahr Nebukadnezars (im Vergleich zum 18. Jahr in Jeremia 52:29)."
   },
   {
     "id": "hist-vat-4956",
-    "kategorie": "Historische Primärquelle",
-    "typ": "Astronomisches Keilschrifttagebuch",
-    "titel": "VAT 4956 (Vorderasiatisches Museum Berlin)",
-    "publikation": "Neubabylonische Keilschrifttafel (datiert auf das 37. Regierungsjahr Nebukadnezars II.)",
-    "datierung_jerusalem": -587,
+    "kategorie": "Primärquelle (Keilschrift)",
+    "titel": "VAT 4956 (Astronomisches Tagebuch, 37. Jahr Nebukadnezars)",
+    "publikation": "Vorderasiatisches Museum Berlin / eBL LMU München",
     "url": "https://lmu.de",
-    "kernaussage": "Enthält rund 30 exakt beobachtete Mond- und Planetenpositionen aus dem 37. Jahr Nebukadnezars II. Astronomische Rückrechnungen der Fachwissenschaft fixieren dieses Jahr eindeutig auf 568/567 v. u. Z. Daraus ergibt sich das 18./19. Regierungsjahr (Zerstörung Jerusalems) für 587/586 v. u. Z."
+    "kernaussage": "Dokumentiert rund 30 Mond- und Planetenpositionen im 37. Jahr Nebukadnezars II. (Standarddatierung: 568/567 v. u. Z.)."
   },
   {
     "id": "hist-bm-21946",
-    "kategorie": "Historische Primärquelle",
-    "typ": "Babylonische Chronik",
+    "kategorie": "Primärquelle (Keilschrift)",
     "titel": "BM 21946 (Nebukadnezar-Chronik / ABC 5)",
-    "publikation": "British Museum, London (Reg. No. 1896,0409.51)",
-    "datierung_jerusalem": -587,
+    "publikation": "British Museum, London",
     "url": "https://britishmuseum.org",
-    "kernaussage": "Zeitgenössische babylonische Chronik für die Jahre 605–594 v. u. Z. Dokumentiert Nebukadnezars Thronbesteigung (605 v. u. Z.) und seine erste Eroberung Jerusalems im 7. Regierungsjahr (597 v. u. Z., Deportation Jojachins), wodurch der chronologische Rahmen bis zur endgültigen Zerstörung 11 Jahre später (587/586 v. u. Z.) verankert wird."
+    "kernaussage": "Zeitgenössische Chronik der Jahre 605–594 v. u. Z.; fixiert Nebukadnezars 7. Jahr (597 v. u. Z.) und zeigt die Chroniklücke danach."
   },
   {
     "id": "hist-egibi-tafeln",
-    "kategorie": "Historische Primärquelle",
-    "typ": "Neubabylonische Wirtschaftsurkunden",
-    "titel": "Tontafel-Archive (u. a. Archiv der Familie Egibi)",
-    "publikation": "Zehntausende datierte Rechts- und Geschäftsverträge aus Babylonien (626–539 v. u. Z.)",
-    "datierung_jerusalem": -587,
+    "kategorie": "Primärquelle (Archive)",
+    "titel": "Neubabylonische Wirtschaftsurkunden (u. a. Archiv Egibi)",
+    "publikation": "British Museum, London",
     "url": "https://britishmuseum.org",
-    "kernaussage": "Lückenlos auf Tag, Monat und Regierungsjahr datierte Verträge aller neubabylonischen Könige (Nabopolassar bis Nabonid). Sie belegen eine Gesamtdauer der neubabylonischen Dynastie von 87 Jahren (626–539 v. u. Z.) ohne eine 20-jährige Lücke."
+    "kernaussage": "Datierte Rechts- und Kaufverträge für jedes einzelne Jahr der neubabylonischen Könige (626–539 v. u. Z.)."
   },
   {
     "id": "hist-ptolemaios-kanon",
     "kategorie": "Antike Referenzquelle",
-    "typ": "Astronomisch-historische Königsliste",
-    "titel": "Kanon der Könige (Ptolemäischer Kanon)",
-    "publikation": "Claudius Ptolemäus (2. Jahrhundert u. Z., basierend auf älteren babylonischen Aufzeichnungen)",
-    "datierung_jerusalem": -587,
+    "titel": "Ptolemäischer Kanon der Könige",
+    "publikation": "Claudius Ptolemäus (2. Jahrhundert u. Z.)",
     "url": "https://wikipedia.org",
-    "kernaussage": "Lückenlose Liste der babylonischen und persischen Herrscher inklusive ihrer exakten Regierungsdauer, verknüpft mit datierten Finsternis-Beobachtungen. Bestätigt die Gesamtdauer des neubabylonischen Reiches und datiert die Eroberung Babylons durch Kyros auf 539 v. u. Z. sowie Nebukadnezars 18./19. Jahr auf 587/586 v. u. Z."
+    "kernaussage": "Astronomisch verankerte Herrscherliste, die den Fall Babylons auf 539 v. u. Z. und Nebukadnezars 18. Jahr auf 587 v. u. Z. legt."
   },
   {
     "id": "hist-berossos",
     "kategorie": "Antike Referenzquelle",
-    "typ": "Antike Geschichtsschreibung",
-    "titel": "Babyloniaka (Fragmente bei Flavius Josephus)",
-    "publikation": "Berossos (babylonischer Priester, 3. Jahrhundert v. u. Z.)",
-    "datierung_jerusalem": -587,
+    "titel": "Berossos: Babyloniaka (bei Flavius Josephus)",
+    "publikation": "3. Jahrhundert v. u. Z.",
     "url": "https://wikipedia.org",
-    "kernaussage": "Überliefert die Regierungszeiten der neubabylonischen Könige (Nebukadnezar II. 43 Jahre, Amel-Marduk 2 Jahre, Neriglissar 4 Jahre, Labaschi-Marduk 9 Monate, Nabonid 17 Jahre), was exakt auf die Datierung 587/586 v. u. Z. führt."
-  },
-  {
-    "id": "bibel-2koe-24-12",
-    "kategorie": "Biblischer Text",
-    "typ": "Geschichtsbuch",
-    "titel": "2. Könige 24:12 und 25:8 vs. Jeremia 52:28–29",
-    "publikation": "Die Bibel (2. Buch der Könige / Jeremia)",
-    "datierung_jerusalem": null,
-    "url": "https://jw.org",
-    "kernaussage": "2. Könige 24:12 datiert die Gefangennahme Jojachins auf das 8. Jahr Nebukadnezars (25:8 die Zerstörung auf das 19. Jahr), während Jeremia 52:28–29 und die Babylonische Chronik BM 21946 vom 7. bzw. 18. Jahr sprechen – ein Schlüsseltext für die Debatte um Akzessionsjahr-Zählung und Kalendersysteme."
-  },
-  {
-    "id": "hist-bm-38462",
-    "kategorie": "Historische Primärquelle",
-    "typ": "Babylonische Mondfinsternis-Tafel",
-    "titel": "BM 38462 (Saros-Text zu Nebukadnezars Regierungsjahren)",
-    "publikation": "British Museum, London (LBAT 1420)",
-    "datierung_jerusalem": -587,
-    "url": "https://britishmuseum.org",
-    "kernaussage": "Listet jährliche Mondfinsternisse vom 1. bis zum 29. Regierungsjahr Nebukadnezars II. auf. Die darin verzeichnete Finsternis im 17. Jahr (15. Juli 588 v. u. Z.) verankert das 18./19. Jahr astronomisch unabhängig von VAT 4956 auf 587/586 v. u. Z."
-  },
-  {
-    "id": "sek-furuli-2007",
-    "kategorie": "Sekundärliteratur (Pro 607)",
-    "typ": "Chronologische Fachstudie",
-    "titel": "Assyrian, Babylonian, Egyptian, and Persian Chronology Compared with the Chronology of the Bible (Vol. II)",
-    "publikation": "Rolf J. Furuli, Oslo 2007",
-    "datierung_jerusalem": -607,
-    "url": "https://www.biblechronology.org/studies/EvidenceVAT4956.pdf",
-    "kernaussage": "Untersucht alle neubabylonischen Keilschrifttexte und vertritt die These, dass die 13 Mondpositionen auf VAT 4956 ohne Änderung des babylonischen Kalenders auf 588/587 v. u. Z. passen, wenn Zeile 3 als 'Nacht des 9. Nisan' gelesen wird."
-  },
-  {
-    "id": "sek-jonsson-gentile",
-    "kategorie": "Sekundärliteratur (Pro 587)",
-    "typ": "Historisch-kritische Studie",
-    "titel": "The Gentile Times Reconsidered: Chronology & Christ's Return",
-    "publikation": "Carl Olof Jonsson, Commentary Press, 4. Auflage 2004",
-    "datierung_jerusalem": -587,
-    "url": "http://kristenfrihet.se/kf2/review.htm",
-    "kernaussage": "Detaillierte Untersuchung der neubabylonischen Chronologie und Gegenanalyse zu VAT 4956. Zeigt auf, warum die 588/587-Berechnung der 13 Mondpositionen astronomische Fehler bei den Planeten und Monatsanfängen erzeugt und durch BM 38462 widerlegt wird."
+    "kernaussage": "Überliefert die Regierungszeiten der neubabylonischen Könige (43, 2, 4, 0, 17 Jahre)."
   }
 ]
