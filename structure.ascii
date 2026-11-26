@@ -1,13 +1,15 @@
 jerusalem-chronologie-vergleich/
-├── README.md                  # Projektübersicht, Methodik & Inhaltsverzeichnis
-├── SCHEMA.md                  # Regeln & Vorlagen für die KI (wie Daten formatiert werden müssen)
-├── data/                      # Maschinenlesbare, strukturierte Datensätze
-│   ├── zeitstrahl.json        # Vergleichende Chronologie (Ereignisse & Jahreszahlen)
-│   ├── quellen.json           # Zentrale Datenbank aller Primär- und Sekundärquellen
-│   └── argumente.csv          # Tabellarische Gegenüberstellung der Kernargumente
-├── analysen/                  # Detaillierte, lesbare Markdown-Ausarbeitungen
+├── index.html                 # Grundgerüst & Styling der Web-Darstellung
+├── app.js                     # Logik für den horizontalen Zeitstrahl, CSV- & Markdown-Viewer
+├── README.md                  # Projektübersicht, Live-Link & Inhaltsverzeichnis
+├── SCHEMA.md                  # Regeln & Vorlagen für KI-gestützte Erweiterungen
+├── data/                      # Strukturierte Datensätze
+│   ├── zeitstrahl.json        # Vergleichende Chronologie (625–537 v. u. Z.)
+│   ├── quellen.json           # Zentrale Datenbank aller Bibel-, jw.org- & Keilschriftquellen
+│   └── argumente.csv          # Gegenüberstellung der 8 Kernstreitpunkte & Gegenargumente
+├── analysen/                  # Detaillierte Markdown-Ausarbeitungen
 │   ├── 01-sichtweise-jw.md    # Argumentation, Bibelstellen & Quellen von jw.org (607 v. u. Z.)
 │   ├── 02-sichtweise-hist.md  # Archäologie, Keilschrifttexte & Historiker (587/586 v. u. Z.)
-│   └── 03-direktvergleich.md  # Gegenüberstellung der Streitpunkte (z. B. 70 Jahre, VAT 4956)
-└── rohdaten/                  # Unverarbeitete Zitate, Textauszüge & Notizen
+│   └── 03-direktvergleich.md  # Gegenüberstellung der Streitpunkte (inkl. VAT 4956 & 9. Nisan)
+└── rohdaten/                  # Unverarbeitete Schlüsselzitate & Quellentexte
     └── zitate-sammlung.md
