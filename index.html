@@ -77,11 +77,11 @@
       <p class="subtitle">Chronologie von Jehovas Zeugen (jw.org) und Geschichtswissenschaft im strukturierten Abgleich.</p>
     </header>
 
-    <nav class="tabs">
-      <button class="tab-btn active" data-tab="timeline">1. Zeitstrahl</button>
-      <button class="tab-btn" data-tab="arguments">2. Streitpunkte</button>
-      <button class="tab-btn" data-tab="analyses">3. Analysen & Rohdaten</button>
-      <button class="tab-btn" data-tab="sources">4. Quellen-Index</button>
+    <nav class="tabs" id="tabNav">
+      <button type="button" class="tab-btn active" data-tab="timeline">1. Zeitstrahl</button>
+      <button type="button" class="tab-btn" data-tab="arguments">2. Streitpunkte</button>
+      <button type="button" class="tab-btn" data-tab="analyses">3. Analysen & Rohdaten</button>
+      <button type="button" class="tab-btn" data-tab="sources">4. Quellen-Index</button>
     </nav>
 
     <div id="notice"></div>
@@ -89,6 +89,13 @@
   </div>
 
   <script>
+    window.onerror = function(msg, url, line) {
+      document.getElementById("notice").innerHTML =
+        '<div class="notice"><strong>Skript-Fehler:</strong> ' + msg + ' (Zeile ' + line + ')</div>';
+    };
+
+    const RAW_BASE = "https://githubusercontent.com";
+
     const state = {
       tab: "timeline",
       events: [],
@@ -110,7 +117,17 @@
 
     const formatYear = (y) => `${Math.abs(y)} v. u. Z.`;
 
-    // Robust CSV Parser for quoted fields
+    async function fetchWithFallback(path) {
+      const bust = "?v=" + Date.now();
+      try {
+        const res = await fetch("./" + path + bust);
+        if (res.ok) return await res.text();
+      } catch (e) {}
+      const rawRes = await fetch(RAW_BASE + path + bust);
+      if (!rawRes.ok) throw new Error("Datei nicht gefunden: " + path);
+      return await rawRes.text();
+    }
+
     function parseCSV(text) {
       const lines = text.trim().split(/\r?\n/);
       if (lines.length < 2) return [];
@@ -135,7 +152,6 @@
       });
     }
 
-    // Lightweight Markdown to HTML converter
     function renderMarkdown(md) {
       let html = md
         .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -148,7 +164,6 @@
         .replace(/\*(.*?)\*/g, "<em>$1</em>")
         .replace(/`([^`]+)`/g, "<code>$1</code>");
 
-      // Convert Markdown tables
       html = html.replace(/((?:\|.*\|\r?\n)+)/g, (block) => {
         const rows = block.trim().split(/\r?\n/).filter(r => !/^\|[\s:-]+\|$/.test(r.replace(/[^|\s:-]/g, "")));
         if (rows.length < 2) return block;
@@ -160,7 +175,6 @@
         return `<table>${tableRows}</table>`;
       });
 
-      // Convert bullet lists
       html = html.replace(/((?:^\* .*\r?\n?)+)/gm, (list) => {
         const items = list.trim().split(/\r?\n/).map(i => `<li>${i.replace(/^\* /, "")}</li>`).join("");
         return `<ul>${items}</ul>`;
@@ -171,21 +185,7 @@
 
     function renderSourcePills(ids) {
       if (!ids || !ids.length) return "";
-      const items = ids.map(id => {
+      const items = ids.filter(Boolean).map(id => {
         const q = state.sourceMap[id.trim()];
         return q
           ? `<a class="source-link" href="${q.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗ ${q.titel}</a>`
-          : `<span class="source-link">${id}</span>`;
-      }).join("");
-      return `<div class="sources">${items}</div>`;
-    }
-
-    function renderTimeline() {
-      const list = state.filterDiffOnly ? state.events.filter(e => e.differenz_jahre > 0) : state.events;
-      return `
-        <div class="controls">
-          <button class="filter-btn ${state.filterDiffOnly ? "active" : ""}" onclick="toggleFilter()">
-            ${state.filterDiffOnly ? "✓ Nur Abweichungen" : "Alle Ereignisse anzeigen"}
-          </button>
-          <div class="legend">
-            <span><i class="dot" style="background:#f59e0b"></i>jw.org</span>
