@@ -4,204 +4,143 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chronologie-Vergleich: Zerstörung Jerusalems</title>
-  <script src="https://tailwindcss.com"></script>
+  <style>
+    :root { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #475569; --border: #e2e8f0; --accent: #4f46e5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    .container { max-width: 820px; margin: 0 auto; padding: 24px 16px; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 24px; }
+    .eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+    h1 { margin: 4px 0 8px; font-size: 26px; }
+    .subtitle { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+    button { background: var(--card); border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text); }
+    button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; cursor: pointer; transition: border-color 0.15s; }
+    .card.selected { border: 2px solid var(--accent); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+    .card-title { font-size: 17px; font-weight: 700; margin: 0; }
+    .badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+    .badge-diff { background: #ffe4e6; color: #be123c; }
+    .badge-same { background: #d1fae5; color: #047857; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .box-jw { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 12px; }
+    .box-hist { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 10px 12px; }
+    .box-label { font-size: 12px; font-weight: 600; }
+    .box-jw .box-label { color: #92400e; }
+    .box-hist .box-label { color: #075985; }
+    .box-year { font-size: 20px; font-weight: 800; margin-top: 2px; }
+    .details { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 14px; color: #334155; }
+    .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .source-link { font-size: 12px; background: #f1f5f9; color: #1e293b; text-decoration: none; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); }
+    .notice { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased">
-  <div id="root">
-    <div style="padding: 2rem; font-family: sans-serif; color: #475569;">
-      Lade Chronologie-Vergleich... (Falls diese Meldung bleibt, wurde JavaScript blockiert.)
-    </div>
+<body>
+  <div class="container">
+    <header>
+      <div class="eyebrow">Interaktiver Daten-Vergleich</div>
+      <h1>Datierung der Zerstörung Jerusalems</h1>
+      <p class="subtitle">Gegenüberstellung der Chronologie von Jehovas Zeugen (jw.org) und der akademischen Geschichtswissenschaft.</p>
+      <div class="controls">
+        <button id="filterBtn">Alle Ereignisse anzeigen</button>
+        <div class="legend">
+          <span><i class="dot" style="background:#f59e0b"></i>jw.org</span>
+          <span><i class="dot" style="background:#0284c7"></i>Historisch</span>
+        </div>
+      </div>
+    </header>
+    <div id="notice"></div>
+    <div id="timeline">Lade Daten...</div>
   </div>
 
-  <!-- Fehler-Fänger für mobile Browser -->
   <script>
-    window.onerror = function(msg, url, line) {
-      document.getElementById("root").innerHTML =
-        '<div style="margin:1rem;padding:1rem;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:0.5rem;font-family:sans-serif;">' +
-        '<strong>Technischer Fehler:</strong> ' + msg + ' (Zeile ' + line + ')</div>';
-    };
-  </script>
+    const FALLBACK = [{
+      id: "evt-03",
+      ereignis: "Zerstörung Jerusalems und des Tempels (Fallback)",
+      jahr_jw: -607,
+      jahr_hist: -587,
+      differenz_jahre: 20,
+      beschreibung: "data/zeitstrahl.json konnte nicht geladen werden – dies ist der eingebaute Test-Datensatz.",
+      quellen_ids: []
+    }];
 
-  <script crossorigin src="https://cloudflare.com"></script>
-  <script crossorigin src="https://cloudflare.com"></script>
-  <script crossorigin src="https://cloudflare.com"></script>
+    let events = [];
+    let sources = {};
+    let selectedId = "evt-03";
+    let filterDiffOnly = false;
 
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+    const formatYear = (y) => `${Math.abs(y)} v. u. Z.`;
 
-    const FALLBACK_EVENTS = [
-      {
-        id: "evt-03",
-        ereignis: "Zerstörung Jerusalems und des Tempels (Vorschau-Daten)",
-        jahr_jw: -607,
-        jahr_hist: -587,
-        differenz_jahre: 20,
-        beschreibung: "Hinweis: Die Datei data/zeitstrahl.json konnte noch nicht geladen werden – dies ist der eingebaute Fallback-Datensatz.",
-        quellen_ids: []
-      }
-    ];
+    function render() {
+      const container = document.getElementById("timeline");
+      const btn = document.getElementById("filterBtn");
+      btn.textContent = filterDiffOnly ? "✓ Nur Abweichungen" : "Alle Ereignisse anzeigen";
+      btn.className = filterDiffOnly ? "active" : "";
 
-    function TimelineApp() {
-      const [events, setEvents] = useState([]);
-      const [sources, setSources] = useState({});
-      const [selectedId, setSelectedId] = useState("evt-03");
-      const [filterDiffOnly, setFilterDiffOnly] = useState(false);
-      const [statusMsg, setStatusMsg] = useState("");
+      const list = filterDiffOnly ? events.filter(e => e.differenz_jahre > 0) : events;
+      container.innerHTML = list.map(evt => {
+        const isSel = evt.id === selectedId;
+        const badge = evt.differenz_jahre > 0
+          ? `<span class="badge badge-diff">Δ ${evt.differenz_jahre} ${evt.differenz_jahre === 1 ? "Jahr" : "Jahre"} Differenz</span>`
+          : `<span class="badge badge-same">Übereinstimmung</span>`;
 
-      useEffect(() => {
-        Promise.all([
-          fetch("./data/zeitstrahl.json").then((r) => {
-            if (!r.ok) throw new Error("HTTP " + r.status + " bei data/zeitstrahl.json");
-            return r.json();
-          }),
-          fetch("./data/quellen.json")
-            .then((r) => (r.ok ? r.json() : []))
-            .catch(() => [])
-        ])
-          .then(([timelineData, sourcesData]) => {
-            setEvents(timelineData);
-            const sourceMap = {};
-            sourcesData.forEach((s) => (sourceMap[s.id] = s));
-            setSources(sourceMap);
-          })
-          .catch((err) => {
-            setStatusMsg("Hinweis: " + err.message + " – zeige Fallback-Daten.");
-            setEvents(FALLBACK_EVENTS);
-          });
-      }, []);
+        const links = (evt.quellen_ids || []).map(id => {
+          const q = sources[id];
+          return q
+            ? `<a class="source-link" href="${q.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗ ${q.titel}</a>`
+            : `<span class="source-link">${id}</span>`;
+        }).join("");
 
-      const formatYear = (y) => `${Math.abs(y)} v. u. Z.`;
-      const filteredEvents = filterDiffOnly
-        ? events.filter((e) => e.differenz_jahre > 0)
-        : events;
-
-      return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <header className="mb-8 border-b border-slate-200 pb-6">
-            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
-              Interaktiver Daten-Vergleich
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-bold mt-1 text-slate-900">
-              Datierung der Zerstörung Jerusalems
-            </h1>
-            <p className="text-slate-600 mt-2 text-sm sm:text-base">
-              Gegenüberstellung der Chronologie von Jehovas Zeugen (jw.org) und der akademischen Geschichtswissenschaft.
-            </p>
-
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => setFilterDiffOnly(!filterDiffOnly)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
-                  filterDiffOnly
-                    ? "bg-indigo-600 text-white"
-                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                {filterDiffOnly ? "✓ Nur Abweichungen (20 J.)" : "Alle Ereignisse anzeigen"}
-              </button>
-              <div className="flex items-center gap-4 text-xs text-slate-500 ml-auto">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> jw.org
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-sky-600 inline-block"></span> Historisch / Archäologisch
-                </span>
+        return `
+          <div class="card ${isSel ? "selected" : ""}" onclick="selectCard('${evt.id}')">
+            <div class="card-header">
+              <h2 class="card-title">${evt.ereignis}</h2>
+              ${badge}
+            </div>
+            <div class="grid">
+              <div class="box-jw">
+                <div class="box-label">jw.org Chronologie</div>
+                <div class="box-year">${formatYear(evt.jahr_jw)}</div>
+              </div>
+              <div class="box-hist">
+                <div class="box-label">Geschichtswissenschaft</div>
+                <div class="box-year">${formatYear(evt.jahr_hist)}</div>
               </div>
             </div>
-          </header>
-
-          {statusMsg && (
-            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl text-xs">
-              {statusMsg}
-            </div>
-          )}
-
-          <div className="space-y-4">
-            {filteredEvents.map((evt) => {
-              const isSelected = selectedId === evt.id;
-              return (
-                <div
-                  key={evt.id}
-                  onClick={() => setSelectedId(evt.id)}
-                  className={`cursor-pointer rounded-xl border p-4 sm:p-5 transition-all ${
-                    isSelected
-                      ? "bg-white border-indigo-500 shadow-md ring-1 ring-indigo-500"
-                      : "bg-white border-slate-200 hover:border-slate-300"
-                  }`}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <h2 className="font-semibold text-base sm:text-lg text-slate-900">
-                      {evt.ereignis}
-                    </h2>
-                    {evt.differenz_jahre > 0 ? (
-                      <span className="self-start sm:self-auto text-xs font-medium px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-700">
-                        Δ {evt.differenz_jahre} {evt.differenz_jahre === 1 ? "Jahr" : "Jahre"} Differenz
-                      </span>
-                    ) : (
-                      <span className="self-start sm:self-auto text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-                        Übereinstimmung
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 mt-4">
-                    <div className="bg-amber-50 border border-amber-200/80 rounded-lg p-3">
-                      <div className="text-xs text-amber-800 font-medium">jw.org Chronologie</div>
-                      <div className="text-lg sm:text-xl font-bold text-amber-950 mt-0.5">
-                        {formatYear(evt.jahr_jw)}
-                      </div>
-                    </div>
-                    <div className="bg-sky-50 border border-sky-200/80 rounded-lg p-3">
-                      <div className="text-xs text-sky-800 font-medium">Geschichtswissenschaft</div>
-                      <div className="text-lg sm:text-xl font-bold text-sky-950 mt-0.5">
-                        {formatYear(evt.jahr_hist)}
-                      </div>
-                    </div>
-                  </div>
-
-                  {isSelected && (
-                    <div className="mt-4 pt-4 border-t border-slate-100 text-sm text-slate-700 space-y-3">
-                      <p>{evt.beschreibung}</p>
-                      {evt.quellen_ids && evt.quellen_ids.length > 0 && (
-                        <div>
-                          <div className="text-xs font-semibold uppercase text-slate-400 mb-1.5">
-                            Verknüpfte Quellen
-                          </div>
-                          <div className="flex flex-wrap gap-2">
-                            {evt.quellen_ids.map((qId) => {
-                              const q = sources[qId];
-                              return q ? (
-                                <a
-                                  key={qId}
-                                  href={q.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="inline-flex items-center gap-1 text-xs bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 px-2.5 py-1 rounded-md border border-slate-200 transition"
-                                >
-                                  <span>↗ {q.titel}</span>
-                                </a>
-                              ) : (
-                                <span key={qId} className="text-xs bg-slate-100 px-2 py-1 rounded">
-                                  {qId}
-                                </span>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            ${isSel ? `<div class="details"><p style="margin:0">${evt.beschreibung}</p>${links ? `<div class="sources">${links}</div>` : ""}</div>` : ""}
           </div>
-        </div>
-      );
+        `;
+      }).join("");
     }
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<TimelineApp />);
+    window.selectCard = function(id) {
+      selectedId = id;
+      render();
+    };
+
+    document.getElementById("filterBtn").addEventListener("click", () => {
+      filterDiffOnly = !filterDiffOnly;
+      render();
+    });
+
+    Promise.all([
+      fetch("./data/zeitstrahl.json?v=" + Date.now()).then(r => {
+        if (!r.ok) throw new Error("data/zeitstrahl.json nicht gefunden (HTTP " + r.status + ")");
+        return r.json();
+      }),
+      fetch("./data/quellen.json?v=" + Date.now()).then(r => r.ok ? r.json() : []).catch(() => [])
+    ]).then(([tData, sData]) => {
+      events = tData;
+      sData.forEach(s => sources[s.id] = s);
+      render();
+    }).catch(err => {
+      document.getElementById("notice").innerHTML = `<div class="notice">Hinweis: ${err.message}</div>`;
+      events = FALLBACK;
+      render();
+    });
   </script>
 </body>
 </html>
