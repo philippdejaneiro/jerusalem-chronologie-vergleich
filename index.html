@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chronologie-Vergleich: Zerstörung Jerusalems</title>
+  <script src="https://tailwindcss.com"></script>
+  <script src="https://unpkg.com" crossorigin></script>
+  <script src="https://unpkg.com" crossorigin></script>
+  <script src="https://unpkg.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function TimelineApp() {
+      const [events, setEvents] = useState([]);
+      const [sources, setSources] = useState({});
+      const [selectedId, setSelectedId] = useState("evt-03");
+      const [filterDiffOnly, setFilterDiffOnly] = useState(false);
+      const [error, setError] = useState(null);
+
+      useEffect(() => {
+        Promise.all([
+          fetch("./data/zeitstrahl.json").then((r) => {
+            if (!r.ok) throw new Error("zeitstrahl.json nicht gefunden");
+            return r.json();
+          }),
+          fetch("./data/quellen.json")
+            .then((r) => (r.ok ? r.json() : []))
+            .catch(() => [])
+        ])
+          .then(([timelineData, sourcesData]) => {
+            setEvents(timelineData);
+            const sourceMap = {};
+            sourcesData.forEach((s) => (sourceMap[s.id] = s));
+            setSources(sourceMap);
+          })
+          .catch((err) => setError(err.message));
+      }, []);
+
+      const formatYear = (y) => `${Math.abs(y)} v. u. Z.`;
+      const filteredEvents = filterDiffOnly
+        ? events.filter((e) => e.differenz_jahre > 0)
+        : events;
+
+      return (
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <header className="mb-8 border-b border-slate-200 pb-6">
+            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+              Interaktiver Daten-Vergleich
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-bold mt-1 text-slate-900">
+              Datierung der Zerstörung Jerusalems
+            </h1>
+            <p className="text-slate-600 mt-2 text-sm sm:text-base">
+              Gegenüberstellung der Chronologie von Jehovas Zeugen (jw.org) und der akademischen Geschichtswissenschaft.
+            </p>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setFilterDiffOnly(!filterDiffOnly)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                  filterDiffOnly
+                    ? "bg-indigo-600 text-white"
+                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
+                }`}
+              >
+                {filterDiffOnly ? "✓ Nur Abweichungen (20 J.)" : "Alle Ereignisse anzeigen"}
+              </button>
+              <div className="flex items-center gap-4 text-xs text-slate-500 ml-auto">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> jw.org
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-sky-600 inline-block"></span> Historisch / Archäologisch
+                </span>
+              </div>
+            </div>
+          </header>
+
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+              Fehler beim Laden der Daten: {error}. Stelle sicher, dass <code>data/zeitstrahl.json</code> im Repo liegt.
+            </div>
+          )}
+
+          <div className="space-y-4">
+            {filteredEvents.map((evt) => {
+              const isSelected = selectedId === evt.id;
+              return (
+                <div
+                  key={evt.id}
+                  onClick={() => setSelectedId(evt.id)}
+                  className={`cursor-pointer rounded-xl border p-4 sm:p-5 transition-all ${
+                    isSelected
+                      ? "bg-white border-indigo-500 shadow-md ring-1 ring-indigo-500"
+                      : "bg-white border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h2 className="font-semibold text-base sm:text-lg text-slate-900">
+                      {evt.ereignis}
+                    </h2>
+                    {evt.differenz_jahre > 0 ? (
+                      <span className="self-start sm:self-auto text-xs font-medium px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-700">
+                        Δ {evt.differenz_jahre} {evt.differenz_jahre === 1 ? "Jahr" : "Jahre"} Differenz
+                      </span>
+                    ) : (
+                      <span className="self-start sm:self-auto text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
+                        Übereinstimmung
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 mt-4">
+                    <div className="bg-amber-50 border border-amber-200/80 rounded-lg p-3">
+                      <div className="text-xs text-amber-800 font-medium">jw.org Chronologie</div>
+                      <div className="text-lg sm:text-xl font-bold text-amber-950 mt-0.5">
+                        {formatYear(evt.jahr_jw)}
+                      </div>
+                    </div>
+                    <div className="bg-sky-50 border border-sky-200/80 rounded-lg p-3">
+                      <div className="text-xs text-sky-800 font-medium">Geschichtswissenschaft</div>
+                      <div className="text-lg sm:text-xl font-bold text-sky-950 mt-0.5">
+                        {formatYear(evt.jahr_hist)}
+                      </div>
+                    </div>
+                  </div>
+
+                  {isSelected && (
+                    <div className="mt-4 pt-4 border-t border-slate-100 text-sm text-slate-700 space-y-3">
+                      <p>{evt.beschreibung}</p>
+                      {evt.quellen_ids && evt.quellen_ids.length > 0 && (
+                        <div>
+                          <div className="text-xs font-semibold uppercase text-slate-400 mb-1.5">
+                            Verknüpfte Quellen
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {evt.quellen_ids.map((qId) => {
+                              const q = sources[qId];
+                              return q ? (
+                                <a
+                                  key={qId}
+                                  href={q.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="inline-flex items-center gap-1 text-xs bg-slate-100 hover:bg-indigo-50 text-slate-700 hover:text-indigo-700 px-2.5 py-1 rounded-md border border-slate-200 transition"
+                                >
+                                  <span>↗ {q.titel}</span>
+                                </a>
+                              ) : (
+                                <span key={qId} className="text-xs bg-slate-100 px-2 py-1 rounded">
+                                  {qId}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<TimelineApp />);
+  </script>
+</body>
+</html>
