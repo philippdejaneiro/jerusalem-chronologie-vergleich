@@ -1,11 +1,5 @@
-var S = { tab: "tl", events: [], args: [], sources: {}, srcList: [], sel: "evt-03", doc: "analysen/03-direktvergleich.md", docs: {} };
-var DOC_LIST = [
-  ["analysen/03-direktvergleich.md", "Direktvergleich"],
-  ["analysen/04-vat4956-mondpositionen.md", "13 Mondpositionen"],
-  ["analysen/01-sichtweise-jw.md", "01: jw.org"],
-  ["analysen/02-sichtweise-hist.md", "02: Historisch"],
-  ["rohdaten/zitate-sammlung.md", "Rohdaten"]
-];
+var S = { tab: "tl", events: [], args: [], sources: {}, srcList: [], sel: "evt-03", doc: "", docList: [], docs: {} };
+var REPO_API = "https://github.com";
 
 function yr(y) { return Math.abs(y) + " v. u. Z."; }
 function pct(y) { return 5 + ((y - (-630)) / 98) * 90; }
@@ -44,7 +38,8 @@ function mdToHtml(md) {
   return md
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/^### (.*$)/gm, "<h3>$1</h3>").replace(/^## (.*$)/gm, "<h2>$1</h2>").replace(/^# (.*$)/gm, "<h1>$1</h1>")
-    .replace(/^&gt; (.*$)/gm, '<blockquote style="border-left:3px solid #94a3b8;padding-left:10px;color:#475569">$1</blockquote>')
+    .replace(/^---$/gm, "<hr style='border:none;border-top:1px solid #e2e8f0;margin:12px 0'/>")
+    .replace(/^&gt; (.*$)/gm, '<blockquote style="border-left:3px solid #94a3b8;padding-left:10px;color:#475569;margin:8px 0">$1</blockquote>')
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/((?:\|.*\|\r?\n)+)/g, function(b) {
       var rows = b.trim().split(/\r?\n/).filter(function(r) { return !/^\|[\s:-]+\|$/.test(r.replace(/[^|\s:-]/g, "")); });
@@ -52,7 +47,11 @@ function mdToHtml(md) {
         var tag = i ? "td" : "th";
         return "<tr>" + r.split("|").slice(1, -1).map(function(c) { return "<" + tag + ">" + c.trim() + "</" + tag + ">"; }).join("") + "</tr>";
       }).join("") + "</table>";
-    }).replace(/\n{2,}/g, "<br><br>");
+    })
+    .replace(/((?:^\* .*\r?\n?)+)/gm, function(l) {
+      return "<ul>" + l.trim().split(/\r?\n/).map(function(i) { return "<li>" + i.replace(/^\* /, "") + "</li>"; }).join("") + "</ul>";
+    })
+    .replace(/\n{2,}/g, "<br><br>");
 }
 
 function render() {
@@ -85,17 +84,18 @@ function render() {
   }
 
   if (S.tab === "doc") {
-    var btns = DOC_LIST.map(function(d) {
-      return '<button type="button" class="tab' + (S.doc === d ? " active" : "") + '" onclick="openDoc(\'' + d + '\')">' + d + '</button>';
+    var btns = S.docList.map(function(p) {
+      var label = p.split("/").pop().replace(".md", "");
+      return '<button type="button" class="tab' + (S.doc === p ? " active" : "") + '" onclick="openDoc(\'' + p + '\')">' + label + '</button>';
     }).join("");
-    v.innerHTML = '<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">' + btns + '</div><div class="card">' + (S.docs[S.doc] || "Lade...") + '</div>';
+    v.innerHTML = '<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">' + btns + '</div><div class="card">' + (S.docs[S.doc] || "Lade Dokument...") + '</div>';
   }
 
   if (S.tab === "src") {
     v.innerHTML = S.srcList.map(function(s) {
-      var nwt = s.bibeltext_nwt ? '<blockquote style="margin:8px 0;padding:8px 10px;background:#f8fafc;border-left:3px solid #d97706;font-size:13px;font-style:italic">' + s.bibeltext_nwt + '</blockquote>' : '';
+      var nwt = s.bibeltext_nwt ? '<blockquote style="margin:8px 0;padding:8px 10px;background:#fffbeb;border-left:3px solid #d97706;font-size:13px;font-style:italic">' + s.bibeltext_nwt + '</blockquote>' : '';
       return '<div class="card"><div class="tag">' + s.kategorie + ' &#8226; ' + s.id + '</div><strong>' + s.titel + '</strong>' + nwt + '<p style="font-size:13px;margin:6px 0">' + s.kernaussage + '</p><a class="pill" href="' + s.url + '" target="_blank">&#8599; Direkt aufrufen</a></div>';
-    }).join("");
+    }).join("") || '<div class="card">Keine Quellen geladen.</div>';
   }
 }
 
@@ -103,8 +103,9 @@ window.pick = function(id) { S.sel = id; render(); };
 window.openDoc = function(p) {
   S.doc = p; render();
   if (!S.docs[p]) {
-    fetch("./" + p + "?v=" + Date.now()).then(function(r) { return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p + " (Bitte Pfad und Kleinschreibung im Repo prüfen)"; })
-      .then(function(h) { S.docs[p] = h; render(); });
+    fetch("./" + p + "?v=" + Date.now()).then(function(r) {
+      return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p;
+    }).then(function(h) { S.docs[p] = h; render(); });
   }
 };
 
@@ -112,7 +113,7 @@ document.getElementById("tabs").addEventListener("click", function(e) {
   var b = e.target.closest(".tab");
   if (!b) return;
   S.tab = b.dataset.t;
-  if (S.tab === "doc" && !S.docs[S.doc]) openDoc(S.doc);
+  if (S.tab === "doc" && S.doc && !S.docs[S.doc]) openDoc(S.doc);
   else render();
 });
 
@@ -127,8 +128,18 @@ function loadFile(path, fn) {
 Promise.all([
   loadFile("data/zeitstrahl.json", function(t) { S.events = JSON.parse(t); }),
   loadFile("data/quellen.json", function(t) { S.srcList = JSON.parse(t); S.srcList.forEach(function(s) { S.sources[s.id] = s; }); }),
-  loadFile("data/argumente.csv", function(t) { S.args = parseCSV(t); })
+  loadFile("data/argumente.csv", function(t) { S.args = parseCSV(t); }),
+  fetch(REPO_API).then(function(r) { return r.json(); }).then(function(data) {
+    if (data && data.tree) {
+      S.docList = data.tree
+        .filter(function(f) { return f.type === "blob" && f.path.endsWith(".md") && (f.path.toLowerCase().startsWith("analysen/") || f.path.toLowerCase().startsWith("rohdaten/")); })
+        .map(function(f) { return f.path; });
+      if (S.docList.length) S.doc = S.docList;
+    }
+  }).catch(function() {})
 ]).then(function() {
+  if (!S.docList.length) S.docList = ["analysen/03-direktvergleich.md", "analysen/01-sichtweise-jw.md", "analysen/02-sichtweise-hist.md", "rohdaten/zitate-sammlung.md"];
+  if (!S.doc) S.doc = S.docList;
   if (errs.length) document.getElementById("err").innerHTML = '<div class="err">Fehler: ' + errs.join(" | ") + '</div>';
   render();
 });
