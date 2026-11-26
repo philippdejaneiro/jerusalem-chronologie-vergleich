@@ -5,27 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chronologie-Vergleich: Zerstörung Jerusalems</title>
   <script src="https://tailwindcss.com"></script>
-  <script src="https://unpkg.com" crossorigin></script>
-  <script src="https://unpkg.com" crossorigin></script>
-  <script src="https://unpkg.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
-  <div id="root"></div>
+  <div id="root">
+    <div style="padding: 2rem; font-family: sans-serif; color: #475569;">
+      Lade Chronologie-Vergleich... (Falls diese Meldung bleibt, wurde JavaScript blockiert.)
+    </div>
+  </div>
+
+  <!-- Fehler-Fänger für mobile Browser -->
+  <script>
+    window.onerror = function(msg, url, line) {
+      document.getElementById("root").innerHTML =
+        '<div style="margin:1rem;padding:1rem;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:0.5rem;font-family:sans-serif;">' +
+        '<strong>Technischer Fehler:</strong> ' + msg + ' (Zeile ' + line + ')</div>';
+    };
+  </script>
+
+  <script crossorigin src="https://cloudflare.com"></script>
+  <script crossorigin src="https://cloudflare.com"></script>
+  <script crossorigin src="https://cloudflare.com"></script>
 
   <script type="text/babel">
     const { useState, useEffect } = React;
+
+    const FALLBACK_EVENTS = [
+      {
+        id: "evt-03",
+        ereignis: "Zerstörung Jerusalems und des Tempels (Vorschau-Daten)",
+        jahr_jw: -607,
+        jahr_hist: -587,
+        differenz_jahre: 20,
+        beschreibung: "Hinweis: Die Datei data/zeitstrahl.json konnte noch nicht geladen werden – dies ist der eingebaute Fallback-Datensatz.",
+        quellen_ids: []
+      }
+    ];
 
     function TimelineApp() {
       const [events, setEvents] = useState([]);
       const [sources, setSources] = useState({});
       const [selectedId, setSelectedId] = useState("evt-03");
       const [filterDiffOnly, setFilterDiffOnly] = useState(false);
-      const [error, setError] = useState(null);
+      const [statusMsg, setStatusMsg] = useState("");
 
       useEffect(() => {
         Promise.all([
           fetch("./data/zeitstrahl.json").then((r) => {
-            if (!r.ok) throw new Error("zeitstrahl.json nicht gefunden");
+            if (!r.ok) throw new Error("HTTP " + r.status + " bei data/zeitstrahl.json");
             return r.json();
           }),
           fetch("./data/quellen.json")
@@ -38,7 +64,10 @@
             sourcesData.forEach((s) => (sourceMap[s.id] = s));
             setSources(sourceMap);
           })
-          .catch((err) => setError(err.message));
+          .catch((err) => {
+            setStatusMsg("Hinweis: " + err.message + " – zeige Fallback-Daten.");
+            setEvents(FALLBACK_EVENTS);
+          });
       }, []);
 
       const formatYear = (y) => `${Math.abs(y)} v. u. Z.`;
@@ -81,9 +110,9 @@
             </div>
           </header>
 
-          {error && (
-            <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
-              Fehler beim Laden der Daten: {error}. Stelle sicher, dass <code>data/zeitstrahl.json</code> im Repo liegt.
+          {statusMsg && (
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl text-xs">
+              {statusMsg}
             </div>
           )}
 
