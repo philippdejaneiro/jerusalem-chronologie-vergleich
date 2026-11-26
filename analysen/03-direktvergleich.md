@@ -35,6 +35,14 @@ Der gesamte Konflikt um **20 Jahre** entsteht dadurch, wie beide Seiten von dies
 * **jw.org-Argument:** Da die Bibel als inspiriertes Wort Gottes unfehlbar sei, müssen weltliche Chronologien dort fehlerhaft oder unvollständig sein, wo sie der biblischen Berechnung widersprechen (`jw-it-jerusalem`).
 * **Historischer Einwand:** Um 20 zusätzliche Jahre unterzubringen, müssten nicht nur sämtliche babylonische Königslisten, Chroniken und astronomische Tagebücher falsch sein, sondern auch die Lebensdaten hunderter Geschäftsleute, Schreiber und Zeugen aus den Tontafel-Archiven (wie der Familie Egibi) um 20 Jahre gestreckt werden (`hist-egibi-tafeln`).
 
+### D. Die 13 Mondpositionen auf VAT 4956 (588/587 vs. 568/567 v. u. Z.)
+* **Argumentation pro 607 v. u. Z. (`jw-w11-1101`, `sek-furuli-2007`):** Da Planeten langsame Umlaufzeiten haben, stützt sich jw.org primär auf die schnellen **13 Mondpositionen** der Tafel. Besonders Zeile 3 (*„Nacht des 9. [Nisan], der Mond stand 1 Elle vor β Virginis“*) passe astronomisch exakt auf den Abend des 9. Nisan 588 v. u. Z., während 568 v. u. Z. einen Tag abwich.
+* **Gegenargumentation pro 587 v. u. Z. (`hist-vat-4956`, `sek-jonsson-gentile`):** Assyriologen weisen darauf hin, dass auf der Originaltafel in Zeile 3 das Zeichen für **8** (nicht 9) steht und die Abweichung von einem Tag in 568 v. u. Z. durch eine bewölkte Neumondsichtung im babylonischen Mondkalender entsteht. Zudem stimmt die auf VAT 4956 beschriebene **Mondfinsternis im Monat Simanu** (samt Sichtbarkeit vor Sonnenuntergang) nur auf den **4. Juli 568 v. u. Z.**, nicht aber auf den 15. Juli 588 v. u. Z.
+
+### E. Regierungsjahre Nebukadnezars: Warum „Jahr 8“ statt „Jahr 7“ (und „19“ statt „18“)?
+* **Der Befund (`bibel-2koe-24-12`, `hist-bm-21946`):** Die Babylonische Chronik BM 21946 datiert die erste Einnahme Jerusalems auf Nebukadnezars **7. Jahr**, während 2. Könige 24:12 vom **8. Jahr** spricht. Dasselbe Muster zeigt sich bei der endgültigen Zerstörung: Jeremia 52:29 nennt das **18. Jahr**, 2. Könige 25:8 das **19. Jahr**.
+* **Einordnung beider Seiten:** Beide Seiten nutzen hier das Konzept der **Akzessionsjahr-Zählung** (babylonisch: das Restjahr der Thronbesteigung zählt als „Jahr 0“; jüdisch/nicht-akzessionell: das Antrittsjahr zählt bereits als „Jahr 1“) sowie den Unterschied zwischen dem babylonischen Frühlingskalender (Nisan) und dem jüdischen Herbstkalender (Tischri). Für die absolute Jahreszahl bedeutet das: Das biblische „8. Jahr“ und das babylonische „7. Jahr“ bezeichnen **dasselbe historische Kalenderjahr** (597 v. u. Z. bzw. 617 v. u. Z. nach jw.org) – es beweist also keine zusätzliche Jahreslücke, sondern zeigt lediglich unterschiedliche Zählweisen desselben Ereignisses.
+
 ---
 
 ## 4. Fazit
