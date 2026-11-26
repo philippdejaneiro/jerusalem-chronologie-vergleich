@@ -1,3 +1,8 @@
+## Projekt-Metadaten (für KI-Kontext)
+- **GitHub Repo:** https://github.com/philippdejaneiro/jerusalem-chronologie-vergleich/
+- **Live-App (GitHub Pages):** https://philippdejaneiro.github.io/jerusalem-chronologie-vergleich/
+- **Datenquellen:** `./data/quellen.json`, `./data/zeitstrahl.json`
+
 # Daten-Schema & Regeln
 
 ## Allgemeine Regeln
