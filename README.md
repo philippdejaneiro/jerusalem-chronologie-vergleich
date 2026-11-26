@@ -1,3 +1,5 @@
+🌐 **Live-Web-Darstellung:** [https://philippdejaneiro.github.io/jerusalem-chronologie-vergleich/](https://philippdejaneiro.github.io/jerusalem-chronologie-vergleich/)  
+
 # Vergleich: Datierung der Zerstörung Jerusalems
 
 Dieses Repository sammelt und vergleicht strukturierte Daten, historische Belege und theologische Argumente zur Datierung der Zerstörung Jerusalems durch Nebukadnezar II.
