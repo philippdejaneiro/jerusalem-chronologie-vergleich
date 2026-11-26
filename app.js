@@ -8,7 +8,7 @@ function pills(ids) {
   if (!ids) return "";
   return ids.filter(Boolean).map(function(id) {
     var q = S.sources[id.trim()];
-    return q ? '<a class="pill" href="' + q.url + '" target="_blank">&#8599; ' + q.titel + '</a>' : '<span class="pill">' + id + '</span>';
+    return q ? '<a class="pill" href="' + q.url + '" target="_blank" rel="noopener">&#8599; ' + q.titel + '</a>' : '<span class="pill">' + id + '</span>';
   }).join("");
 }
 
@@ -29,7 +29,7 @@ function parseCSV(txt) {
   var head = splitLine(lines.shift());
   return lines.map(function(l) {
     var vals = splitLine(l), o = {};
-    head.forEach(function(h, i) { o[h.trim()] = (vals[i] || "").trim(); });
+    head.forEach(function(h, i) { o[h.trim()] = (vals.at(i) || "").trim(); });
     return o;
   });
 }
@@ -71,7 +71,7 @@ function render() {
       return '<div class="pt pt-jw' + sel + '" style="left:' + pct(e.jahr_jw) + '%" onclick="pick(\'' + e.id + '\')">' + Math.abs(e.jahr_jw) + '<i></i></div>' +
              '<div class="pt pt-hist' + sel + '" style="left:' + pct(e.jahr_hist) + '%" onclick="pick(\'' + e.id + '\')"><i></i>' + Math.abs(e.jahr_hist) + '</div>';
     }).join("");
-    var cur = S.events.find(function(e) { return e.id === S.sel; }) || S.events;
+    var cur = S.events.find(function(e) { return e.id === S.sel; }) || S.events.at(0);
 
     v.innerHTML = '<div class="tl-box"><div class="tl">' + ticks + '<div class="line-jw"></div><div class="line-hist"></div><svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">' + lines + '</svg>' + pts + '</div></div>' +
       '<div class="card"><strong>' + cur.ereignis + '</strong><div class="grid"><div class="jw"><div class="tag">jw.org</div><strong>' + yr(cur.jahr_jw) + '</strong></div><div class="hist"><div class="tag">Historisch</div><strong>' + yr(cur.jahr_hist) + '</strong></div></div><p style="font-size:14px;margin:10px 0 6px">' + cur.beschreibung + '</p>' + pills(cur.quellen_ids) + '</div>';
@@ -94,7 +94,7 @@ function render() {
   if (S.tab === "src") {
     v.innerHTML = S.srcList.map(function(s) {
       var nwt = s.bibeltext_nwt ? '<blockquote style="margin:8px 0;padding:8px 10px;background:#fffbeb;border-left:3px solid #d97706;font-size:13px;font-style:italic">' + s.bibeltext_nwt + '</blockquote>' : '';
-      return '<div class="card"><div class="tag">' + s.kategorie + ' &#8226; ' + s.id + '</div><strong>' + s.titel + '</strong>' + nwt + '<p style="font-size:13px;margin:6px 0">' + s.kernaussage + '</p><a class="pill" href="' + s.url + '" target="_blank">&#8599; Direkt aufrufen</a></div>';
+      return '<div class="card"><div class="tag">' + s.kategorie + ' &#8226; ' + s.id + '</div><strong>' + s.titel + '</strong>' + nwt + '<p style="font-size:13px;margin:6px 0">' + s.kernaussage + '</p><a class="pill" href="' + s.url + '" target="_blank" rel="noopener">&#8599; Auf Quelle / WOL &ouml;ffnen</a></div>';
     }).join("") || '<div class="card">Keine Quellen geladen.</div>';
   }
 }
@@ -104,7 +104,7 @@ window.openDoc = function(p) {
   S.doc = p; render();
   if (!S.docs[p]) {
     fetch("./" + p + "?v=" + Date.now()).then(function(r) {
-      return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p;
+      return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p + " (HTTP " + r.status + ")";
     }).then(function(h) { S.docs[p] = h; render(); });
   }
 };
@@ -134,12 +134,12 @@ Promise.all([
       S.docList = data.tree
         .filter(function(f) { return f.type === "blob" && f.path.endsWith(".md") && (f.path.toLowerCase().startsWith("analysen/") || f.path.toLowerCase().startsWith("rohdaten/")); })
         .map(function(f) { return f.path; });
-      if (S.docList.length) S.doc = S.docList;
+      if (S.docList.length) S.doc = S.docList.at(0);
     }
   }).catch(function() {})
 ]).then(function() {
-  if (!S.docList.length) S.docList = ["analysen/03-direktvergleich.md", "analysen/01-sichtweise-jw.md", "analysen/02-sichtweise-hist.md", "rohdaten/zitate-sammlung.md"];
-  if (!S.doc) S.doc = S.docList;
+  if (!S.docList.length) S.docList = ["analysen/03-direktvergleich.md", "analysen/04-vat4956-mondpositionen.md", "analysen/01-sichtweise-jw.md", "analysen/02-sichtweise-hist.md", "rohdaten/zitate-sammlung.md"];
+  if (!S.doc) S.doc = S.docList.at(0);
   if (errs.length) document.getElementById("err").innerHTML = '<div class="err">Fehler: ' + errs.join(" | ") + '</div>';
   render();
 });
