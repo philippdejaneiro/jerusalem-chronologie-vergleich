@@ -1,6 +1,7 @@
 var S = { tab: "tl", events: [], args: [], sources: {}, srcList: [], sel: "evt-03", doc: "analysen/03-direktvergleich.md", docs: {} };
 var DOC_LIST = [
   ["analysen/03-direktvergleich.md", "Direktvergleich"],
+  ["analysen/04-vat4956-mondpositionen.md", "13 Mondpositionen"],
   ["analysen/01-sichtweise-jw.md", "01: jw.org"],
   ["analysen/02-sichtweise-hist.md", "02: Historisch"],
   ["rohdaten/zitate-sammlung.md", "Rohdaten"]
@@ -71,7 +72,7 @@ function render() {
       return '<div class="pt pt-jw' + sel + '" style="left:' + pct(e.jahr_jw) + '%" onclick="pick(\'' + e.id + '\')">' + Math.abs(e.jahr_jw) + '<i></i></div>' +
              '<div class="pt pt-hist' + sel + '" style="left:' + pct(e.jahr_hist) + '%" onclick="pick(\'' + e.id + '\')"><i></i>' + Math.abs(e.jahr_hist) + '</div>';
     }).join("");
-    var cur = S.events.find(function(e) { return e.id === S.sel; }) || S.events[0];
+    var cur = S.events.find(function(e) { return e.id === S.sel; }) || S.events;
 
     v.innerHTML = '<div class="tl-box"><div class="tl">' + ticks + '<div class="line-jw"></div><div class="line-hist"></div><svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">' + lines + '</svg>' + pts + '</div></div>' +
       '<div class="card"><strong>' + cur.ereignis + '</strong><div class="grid"><div class="jw"><div class="tag">jw.org</div><strong>' + yr(cur.jahr_jw) + '</strong></div><div class="hist"><div class="tag">Historisch</div><strong>' + yr(cur.jahr_hist) + '</strong></div></div><p style="font-size:14px;margin:10px 0 6px">' + cur.beschreibung + '</p>' + pills(cur.quellen_ids) + '</div>';
@@ -85,14 +86,15 @@ function render() {
 
   if (S.tab === "doc") {
     var btns = DOC_LIST.map(function(d) {
-      return '<button type="button" class="tab' + (S.doc === d[0] ? " active" : "") + '" onclick="openDoc(\'' + d[0] + '\')">' + d[1] + '</button>';
+      return '<button type="button" class="tab' + (S.doc === d ? " active" : "") + '" onclick="openDoc(\'' + d + '\')">' + d + '</button>';
     }).join("");
     v.innerHTML = '<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">' + btns + '</div><div class="card">' + (S.docs[S.doc] || "Lade...") + '</div>';
   }
 
   if (S.tab === "src") {
     v.innerHTML = S.srcList.map(function(s) {
-      return '<div class="card"><div class="tag">' + s.kategorie + ' &#8226; ' + s.id + '</div><strong>' + s.titel + '</strong><p style="font-size:13px;margin:6px 0">' + s.kernaussage + '</p><a class="pill" href="' + s.url + '" target="_blank">&#8599; Quelle &ouml;ffnen</a></div>';
+      var nwt = s.bibeltext_nwt ? '<blockquote style="margin:8px 0;padding:8px 10px;background:#f8fafc;border-left:3px solid #d97706;font-size:13px;font-style:italic">' + s.bibeltext_nwt + '</blockquote>' : '';
+      return '<div class="card"><div class="tag">' + s.kategorie + ' &#8226; ' + s.id + '</div><strong>' + s.titel + '</strong>' + nwt + '<p style="font-size:13px;margin:6px 0">' + s.kernaussage + '</p><a class="pill" href="' + s.url + '" target="_blank">&#8599; Direkt aufrufen</a></div>';
     }).join("");
   }
 }
@@ -101,7 +103,7 @@ window.pick = function(id) { S.sel = id; render(); };
 window.openDoc = function(p) {
   S.doc = p; render();
   if (!S.docs[p]) {
-    fetch("./" + p + "?v=" + Date.now()).then(function(r) { return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p; })
+    fetch("./" + p + "?v=" + Date.now()).then(function(r) { return r.ok ? r.text().then(mdToHtml) : "Nicht gefunden: " + p + " (Bitte Pfad und Kleinschreibung im Repo prüfen)"; })
       .then(function(h) { S.docs[p] = h; render(); });
   }
 };
