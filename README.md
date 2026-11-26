@@ -7,7 +7,7 @@ Dieses Repository sammelt und vergleicht strukturierte Daten, historische Primä
 2. **Akademische Geschichtswissenschaft & Archäologie:** Datierung auf **587/586 v. u. Z.** (basierend auf babylonischen Chroniken, astronomischen Keilschrifttexten wie VAT 4956 und lückenlosen Wirtschaftstafeln).
 
 ## Aufbau des Repositories
-- **`index.html`**: Interaktive Single-Page-Web-App, die alle JSON-, CSV- und Markdown-Dateien live im Browser rendert.
+- **`index.html` & `app.js`**: Interaktive Web-App mit maßstabsgetreuem horizontalem Zeitstrahl sowie Leseansichten für CSV- und Markdown-Dateien.
 - **`SCHEMA.md`**: Daten-Regeln und Metadaten für KI-gestützte Erweiterungen.
 - **`/data`**: Strukturierte Datensätze (`zeitstrahl.json`, `quellen.json`, `argumente.csv`).
 - **`/analysen`**: Detaillierte Themen-Dossiers (`01-sichtweise-jw.md`, `02-sichtweise-hist.md`, `03-direktvergleich.md`).
